@@ -1,0 +1,76 @@
+name: Auto-merge dev into staging
+
+'on':
+    push:
+          branches:
+                  - dev
+
+          permissions:
+              contents: write
+                actions: read
+
+                jobs:
+                    merge-dev-to-staging:
+                          runs-on: ubuntu-latest
+
+                              steps:
+                                      - name: Checkout repository
+                                              uses: actions/checkout@v4
+                                                      with:
+                                                                  fetch-depth: 0
+
+                                                                        - name: Configure Git identity
+                                                                                run: |
+                                                                                            git config user.name "github-actions[bot]"
+                                                                                                      git config user.email "github-actions[bot]@users.noreply.github.com"
+
+                                                                                                            - name: Fetch all branches
+                                                                                                                    run: git fetch origin
+
+                                                                                                                          - name: Checkout staging branch
+                                                                                                                                  run: git checkout staging
+
+                                                                                                                                        - name: Merge dev into staging
+                                                                                                                                                run: git merge origin/dev --no-ff
+
+                                                                                                                                                      - name: Push changes to staging
+                                                                                                                                                              run: git push origin staging
+
+name: Auto-merge dev into staging
+
+on:
+    push:
+          branches:
+                  - dev
+
+          permissions:
+              contents: write
+                actions: read
+
+                jobs:
+                    merge-dev-to-staging:
+                          runs-on: ubuntu-latest
+
+                              steps:
+                                      - name: Checkout repository
+                                              uses: actions/checkout@v4
+                                                      with:
+                                                                  fetch-depth: 0
+
+                                                                        - name: Configure Git identity
+                                                                                run: |
+                                                                                            git config user.name "github-actions[bot]"
+                                                                                                      git config user.email "github-actions[bot]@users.noreply.github.com"
+
+                                                                                                            - name: Fetch all branches
+                                                                                                                    run: git fetch origin
+
+                                                                                                                          - name: Checkout staging branch
+                                                                                                                                  run: git checkout staging
+
+                                                                                                                                        - name: Merge dev into staging
+                                                                                                                                                run: git merge origin/dev --no-ff
+
+                                                                                                                                                      - name: Push changes to staging
+                                                                                                                                                              run: git push origin staging
+
